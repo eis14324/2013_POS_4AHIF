@@ -1,6 +1,6 @@
 package at.grueneis.spengergasse.lesson_plan;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Teacher {
 	private final String firstName;

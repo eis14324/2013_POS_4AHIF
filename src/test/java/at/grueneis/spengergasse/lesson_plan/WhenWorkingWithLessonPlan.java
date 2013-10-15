@@ -1,6 +1,7 @@
 package at.grueneis.spengergasse.lesson_plan;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Vector;
 
 import org.junit.Before;
@@ -24,13 +25,14 @@ public class WhenWorkingWithLessonPlan {
 		teacher = new Teacher("Joachim", "Grüneis", null,
 				"grueneis@spengergasse.at");
 		schoolClass = new SchoolClass("4AHIF");
-		classRoom = new ClassRoom();
+		classRoom = new ClassRoom("C4.08", "4", "C");
 		lesson = new Lesson(teachingUnit, teacher, schoolClass, classRoom);
 	}
 
 	@Test
 	public void buildingEmptyLessonPlan() {
-		SchoolYear schoolYear = new SchoolYear();
+		SchoolYear schoolYear = new SchoolYear("2013/2014", new Date(),
+				new Date());
 		LessonPlan lessonPlan = new LessonPlan("Stundenplan 2013/2014",
 				schoolYear, new Vector<Lesson>());
 		assertThat(lessonPlan, is(notNullValue()));
@@ -39,7 +41,8 @@ public class WhenWorkingWithLessonPlan {
 	@Test(expected = UnsupportedOperationException.class)
 	public void whenGettingListOfLessons() {
 		// given
-		SchoolYear schoolYear = new SchoolYear();
+		SchoolYear schoolYear = new SchoolYear("2013/2014", new Date(),
+				new Date());
 		LessonPlan lessonPlan = new LessonPlan("Stundenplan 2013/2014",
 				schoolYear, new Vector<Lesson>());
 		int numberOfLessonsBefore = lessonPlan.getLessons().size();

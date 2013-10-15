@@ -1,17 +1,6 @@
 package at.grueneis.spengergasse.lesson_plan;
 
 public class Lesson {
-	public TeachingUnit getTeachingUnit() {
-		return teachingUnit;
-	}
-
-	public ClassRoom getClassRoom() {
-		return classRoom;
-	}
-
-	public SchoolClass getSchoolClass() {
-		return schoolClass;
-	}
 
 	private final TeachingUnit teachingUnit;
 	private final Teacher teacher;
@@ -32,6 +21,18 @@ public class Lesson {
 
 	public Teacher getTeacher() {
 		return teacher;
+	}
+
+	public TeachingUnit getTeachingUnit() {
+		return teachingUnit;
+	}
+
+	public ClassRoom getClassRoom() {
+		return classRoom;
+	}
+
+	public SchoolClass getSchoolClass() {
+		return schoolClass;
 	}
 
 	@Override

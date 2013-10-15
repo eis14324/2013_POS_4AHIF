@@ -5,15 +5,15 @@ import java.util.UUID;
 public class TeachingUnit {
 
 	private final UUID uuid;
-	private final String nameEins;
+	private final String name;
 
 	public TeachingUnit(String name) {
 		uuid = UUID.randomUUID();
-		this.nameEins = name;
+		this.name = name;
 	}
 
-	public String getNameEins() {
-		return nameEins.toLowerCase();
+	public String getName() {
+		return name;
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class TeachingUnit {
 	}
 
 	public String dumpObject() {
-		return "Iahh [uuid=" + uuid + ", nameEins=" + nameEins + "]";
+		return "Iahh [uuid=" + uuid + ", name=" + name + "]";
 	}
 
 	@Override

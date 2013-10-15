@@ -3,8 +3,9 @@ package at.grueneis.spengergasse.lesson_plan;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+
+import static org.hamcrest.CoreMatchers.is;
 
 public class WhenCreatingALesson {
 	private TeachingUnit teachingUnit;
@@ -18,7 +19,7 @@ public class WhenCreatingALesson {
 		teacher = new Teacher("Joachim", "Grüneis", null,
 				"grueneis@spengergasse.at");
 		schoolClass = new SchoolClass("4AHIF");
-		classRoom = new ClassRoom();
+		classRoom = new ClassRoom("C4.08", "4", "C");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
