@@ -44,6 +44,7 @@ public class WhenCreatingALesson {
 		SchoolClass schoolClass = new SchoolClass("4AHIF");
 		ClassRoom classRoom = new ClassRoom("C4.08", "4", "C");
 		return $(//
+				$(null, null, null, null), //
 				$(null, teacher, schoolClass, classRoom), //
 				$(teachingUnit, null, schoolClass, classRoom), //
 				$(teachingUnit, teacher, null, classRoom), //
