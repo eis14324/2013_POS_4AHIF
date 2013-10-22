@@ -1,4 +1,4 @@
-package at.grueneis.spengergasse.lesson_plan;
+package at.grueneis.spengergasse.lesson_plan.domain;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -7,6 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import at.grueneis.spengergasse.lesson_plan.domain.ClassRoom;
+import at.grueneis.spengergasse.lesson_plan.domain.Lesson;
+import at.grueneis.spengergasse.lesson_plan.domain.SchoolClass;
+import at.grueneis.spengergasse.lesson_plan.domain.Teacher;
+import at.grueneis.spengergasse.lesson_plan.domain.TeachingUnit;
 import static junitparams.JUnitParamsRunner.$;
 
 import static org.hamcrest.MatcherAssert.assertThat;

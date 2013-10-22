@@ -1,4 +1,4 @@
-package at.grueneis.spengergasse.lesson_plan;
+package at.grueneis.spengergasse.lesson_plan.domain;
 
 import java.util.UUID;
 

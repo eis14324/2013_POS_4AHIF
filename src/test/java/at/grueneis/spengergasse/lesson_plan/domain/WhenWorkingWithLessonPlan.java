@@ -1,4 +1,4 @@
-package at.grueneis.spengergasse.lesson_plan;
+package at.grueneis.spengergasse.lesson_plan.domain;
 
 import java.util.Collection;
 import java.util.Date;
@@ -6,6 +6,14 @@ import java.util.Vector;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import at.grueneis.spengergasse.lesson_plan.domain.ClassRoom;
+import at.grueneis.spengergasse.lesson_plan.domain.Lesson;
+import at.grueneis.spengergasse.lesson_plan.domain.LessonPlan;
+import at.grueneis.spengergasse.lesson_plan.domain.SchoolClass;
+import at.grueneis.spengergasse.lesson_plan.domain.SchoolYear;
+import at.grueneis.spengergasse.lesson_plan.domain.Teacher;
+import at.grueneis.spengergasse.lesson_plan.domain.TeachingUnit;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 

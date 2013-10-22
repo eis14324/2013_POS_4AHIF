@@ -1,8 +1,10 @@
-package at.grueneis.spengergasse.lesson_plan;
+package at.grueneis.spengergasse.lesson_plan.domain;
 
 import java.util.Date;
 
 import org.junit.Test;
+
+import at.grueneis.spengergasse.lesson_plan.domain.SchoolYear;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
