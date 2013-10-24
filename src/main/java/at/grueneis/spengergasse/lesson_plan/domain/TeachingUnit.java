@@ -1,8 +1,11 @@
 package at.grueneis.spengergasse.lesson_plan.domain;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class TeachingUnit {
+public class TeachingUnit implements Serializable {
+
+	private static final long serialVersionUID = -8191255976454225754L;
 
 	private final UUID uuid;
 	private final String name;
@@ -38,12 +41,8 @@ public class TeachingUnit {
 		return true;
 	}
 
-	public String dumpObject() {
-		return "Iahh [uuid=" + uuid + ", name=" + name + "]";
-	}
-
 	@Override
 	public String toString() {
-		return "Iahh [uuid=" + uuid + "]";
+		return "TeachingUnit [uuid=" + uuid + "]";
 	}
 }

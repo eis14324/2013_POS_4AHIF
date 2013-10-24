@@ -1,10 +1,8 @@
 package at.grueneis.spengergasse.lesson_plan.persistence;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 public interface StreamDao<T> {
-	Iterable<T> readAll(ObjectInputStream objectInputStream);
+	Iterable<T> readAll();
 
-	void writeAll(ObjectOutputStream objectOutputStream, Iterable<T> objects);
+	void writeAll(Iterable<T> objects);
 }

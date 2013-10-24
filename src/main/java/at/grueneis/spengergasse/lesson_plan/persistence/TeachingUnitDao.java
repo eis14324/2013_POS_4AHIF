@@ -2,14 +2,14 @@ package at.grueneis.spengergasse.lesson_plan.persistence;
 
 import java.io.File;
 
-import at.grueneis.spengergasse.lesson_plan.domain.Teacher;
+import at.grueneis.spengergasse.lesson_plan.domain.TeachingUnit;
 
-public class TeacherDao extends AbstractStreamDao<Teacher> {
-	private static final String FILE_NAME = "teachers";
+public class TeachingUnitDao extends AbstractStreamDao<TeachingUnit> {
+	private static final String FILE_NAME = "teachingUnits";
 
 	private final String directoryName;
 
-	public TeacherDao(String directoryName) {
+	public TeachingUnitDao(String directoryName) {
 		this.directoryName = directoryName;
 	}
 
