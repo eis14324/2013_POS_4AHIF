@@ -114,7 +114,8 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -184,6 +185,35 @@
 					<outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<configLocation>config/sun_checks.xml</configLocation>
+					<!-- <configLocation>src/main/check/checkstyle.xml</configLocation> -->
+					<!-- <packageNamesLocation>com/mycompany/checks/packagenames.xml</packageNamesLocation> -->
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<linkXref>true</linkXref>
+					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+					<minimumTokens>100</minimumTokens>
+					<targetJdk>${jdk.version}</targetJdk>
+					<!-- <excludes> <exclude>**/*Bean.java</exclude> <exclude>**/generated/*.java</exclude> 
+						</excludes> <excludeRoots> <excludeRoot>target/generated-sources/stubs</excludeRoot> 
+						</excludeRoots> -->
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.5.2</version>
+			</plugin>
 		</plugins>
 	</reporting>
 
@@ -209,6 +239,11 @@
 	<!-- <ciManagement>...</ciManagement> -->
 	<!-- <mailingLists>...</mailingLists> -->
 	<!-- <scm>...</scm> -->
+	<scm>
+		<url>https://github.com/grueneis-spengergasse/2013_POS_4AHIF</url>
+		<connection>scm:git:git://github.com/grueneis-spengergasse/2013_POS_4AHIF.git</connection>
+		<developerConnection>scm:git:git@github.com:grueneis-spengergasse/2013_POS_4AHIF.git</developerConnection>
+	</scm>
 	<!-- <prerequisites>...</prerequisites> -->
 	<!-- <repositories>...</repositories> -->
 	<!-- <pluginRepositories>...</pluginRepositories> -->
