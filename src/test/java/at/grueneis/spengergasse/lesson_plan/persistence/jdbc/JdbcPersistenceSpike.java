@@ -1,7 +1,6 @@
 /*
- * Jumio Inc.
- *
- * Copyright (C) 2010 - 2011
+ * Joachim Grüneis
+ * Copyright (C) 2013
  * All rights reserved.
  */
 package at.grueneis.spengergasse.lesson_plan.persistence.jdbc;
@@ -14,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -28,8 +28,10 @@ public class JdbcPersistenceSpike {
         Class.forName("org.h2.Driver");
         connection = DriverManager.getConnection("jdbc:h2:mem:test", "sa", "");
         Statement statement = connection.createStatement();
-        statement.execute("CREATE TABLE teachers (id number, firstname varchar, lastname varchar)");
-        statement.execute("INSERT INTO teachers (id, firstname, lastname) VALUES (1, 'Joachim', 'Grueneis')");
+        statement
+                .execute("CREATE TABLE teachers (id number, firstname varchar, lastname varchar)");
+        statement
+                .execute("INSERT INTO teachers (id, firstname, lastname) VALUES (1, 'Joachim', 'Grueneis')");
     }
 
     @After
@@ -43,7 +45,8 @@ public class JdbcPersistenceSpike {
     public void aFindAll() {
         try {
             List<Teacher> entities = new ArrayList<>();
-            PreparedStatement statement = connection.prepareStatement("SELECT id, firstname, lastname FROM teachers");
+            PreparedStatement statement = connection
+                    .prepareStatement("SELECT id, firstname, lastname FROM teachers");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Long id = resultSet.getLong("id");
@@ -63,8 +66,8 @@ public class JdbcPersistenceSpike {
     public void aFindById() {
         try {
             String value = null;
-            PreparedStatement statement = connection.prepareStatement(
-                    "SELECT id, firstname, lastname FROM teachers WHERE id = ?");
+            PreparedStatement statement = connection
+                    .prepareStatement("SELECT id, firstname, lastname FROM teachers WHERE id = ?");
             statement.setLong(1, 1l);
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next()) {
@@ -87,7 +90,8 @@ public class JdbcPersistenceSpike {
     @Test
     public void insert() {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO teachers (id, name) VALUES (?, ?)");
+            PreparedStatement statement = connection
+                    .prepareStatement("INSERT INTO teachers (id, name) VALUES (?, ?)");
             statement.setLong(1, 2l);
             statement.setString(2, "Resch");
             int numberOfInsertedRecords = statement.executeUpdate();
@@ -102,7 +106,8 @@ public class JdbcPersistenceSpike {
     @Test
     public void update() {
         try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE teachers SET name = ? WHERE id = ?");
+            PreparedStatement statement = connection
+                    .prepareStatement("UPDATE teachers SET name = ? WHERE id = ?");
             statement.setString(1, "Joachim");
             statement.setLong(2, 1l);
             int numberOfUpdatedRecords = statement.executeUpdate();
@@ -117,7 +122,8 @@ public class JdbcPersistenceSpike {
     @Test
     public void delete() {
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM teachers WHERE id = ?");
+            PreparedStatement statement = connection
+                    .prepareStatement("DELETE FROM teachers WHERE id = ?");
             statement.setLong(1, 1l);
             int numberOfDeletedRecords = statement.executeUpdate();
             if (numberOfDeletedRecords != 1) {
@@ -132,7 +138,8 @@ public class JdbcPersistenceSpike {
     public void countAll() {
         try {
             Long count = null;
-            PreparedStatement statement = connection.prepareStatement("SELECT count(*) FROM teachers");
+            PreparedStatement statement = connection
+                    .prepareStatement("SELECT count(*) FROM teachers");
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next()) {
                 // not found exception
@@ -154,11 +161,11 @@ public class JdbcPersistenceSpike {
 
     public static class Teacher {
 
-        private Long id;
+        private final Long id;
 
-        private String firstname;
+        private final String firstname;
 
-        private String lastname;
+        private final String lastname;
 
         public Teacher(Long id, String firstname, String lastname) {
             this.id = id;

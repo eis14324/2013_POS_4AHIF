@@ -1,9 +1,16 @@
+/*
+ * Joachim Grüneis
+ * Copyright (C) 2013
+ * All rights reserved.
+ */
 package at.grueneis.spengergasse.lesson_plan.persistence.file;
 
-import at.grueneis.spengergasse.lesson_plan.domain.Teacher;
 import java.util.ArrayList;
 import java.util.Date;
+
 import org.junit.Test;
+
+import at.grueneis.spengergasse.lesson_plan.domain.Teacher;
 
 public class TeacherDaoTest {
 
@@ -12,7 +19,8 @@ public class TeacherDaoTest {
     @Test
     public void whenWritingATeacher() {
         teacherDao = new TeacherDao("src/test/resources");
-        Teacher teacher = new Teacher("Joachim", "Grüneis", new Date(), "grueneis@spengergasse.at");
+        Teacher teacher = new Teacher("Joachim", "Grüneis", new Date(),
+                "grueneis@spengergasse.at");
         ArrayList<Teacher> teachers = new ArrayList<>();
         teachers.add(teacher);
         teacherDao.writeAll(teachers);

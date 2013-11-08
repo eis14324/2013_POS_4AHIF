@@ -1,7 +1,13 @@
+/*
+ * Joachim Grüneis
+ * Copyright (C) 2013
+ * All rights reserved.
+ */
 package at.grueneis.spengergasse.lesson_plan.persistence.file;
 
-import at.grueneis.spengergasse.lesson_plan.domain.TeachingUnit;
 import java.io.File;
+
+import at.grueneis.spengergasse.lesson_plan.domain.TeachingUnit;
 
 public class TeachingUnitDao extends AbstractStreamDao<TeachingUnit> {
 

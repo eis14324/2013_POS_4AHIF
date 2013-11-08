@@ -1,7 +1,6 @@
 /*
- * Jumio Inc.
- *
- * Copyright (C) 2010 - 2011
+ * Joachim Grüneis
+ * Copyright (C) 2013
  * All rights reserved.
  */
 package at.grueneis.spengergasse.lesson_plan.persistence.jdbc;
@@ -35,7 +34,8 @@ public abstract class AbstractDatabaseDao<T> implements DatabaseDao<T> {
                 throw new IllegalStateException("Connection must not be closed");
             }
         } catch (SQLException e) {
-            throw new LessonPlanDataAccessException("Failed to validate connection", e);
+            throw new LessonPlanDataAccessException(
+                    "Failed to validate connection", e);
         }
         return connection;
     }
@@ -48,12 +48,14 @@ public abstract class AbstractDatabaseDao<T> implements DatabaseDao<T> {
                 statementText.append(columnList());
                 statementText.append(" FROM ");
                 statementText.append(tableName());
-                findAllStatement = connection().prepareStatement(statementText.toString());
+                findAllStatement = connection().prepareStatement(
+                        statementText.toString());
             }
             return findAllStatement;
 
         } catch (SQLException e) {
-            throw new LessonPlanDataAccessException("Failed to create statement", e);
+            throw new LessonPlanDataAccessException(
+                    "Failed to create statement", e);
         }
     }
 
@@ -79,32 +81,38 @@ public abstract class AbstractDatabaseDao<T> implements DatabaseDao<T> {
             resultSet.close();
             return entities;
         } catch (SQLException e) {
-            throw new LessonPlanDataAccessException("Failed to fetch all entities", e);
+            throw new LessonPlanDataAccessException(
+                    "Failed to fetch all entities", e);
         }
     }
 
     @Override
     public T findById(Long id) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null; // To change body of implemented methods use File |
+                     // Settings | File Templates.
     }
 
     @Override
     public void save(T t) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        // To change body of implemented methods use File | Settings | File
+        // Templates.
     }
 
     @Override
     public void delete(T t) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        // To change body of implemented methods use File | Settings | File
+        // Templates.
     }
 
     @Override
     public void delete(Long id) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        // To change body of implemented methods use File | Settings | File
+        // Templates.
     }
 
     @Override
     public Long count() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null; // To change body of implemented methods use File |
+                     // Settings | File Templates.
     }
 }

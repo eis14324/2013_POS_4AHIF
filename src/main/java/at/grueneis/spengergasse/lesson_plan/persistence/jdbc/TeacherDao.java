@@ -1,15 +1,15 @@
 /*
- * Jumio Inc.
- *
- * Copyright (C) 2010 - 2011
+ * Joachim Grüneis
+ * Copyright (C) 2013
  * All rights reserved.
  */
 package at.grueneis.spengergasse.lesson_plan.persistence.jdbc;
 
-import at.grueneis.spengergasse.lesson_plan.domain.Teacher;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import at.grueneis.spengergasse.lesson_plan.domain.Teacher;
 
 /**
  *
@@ -22,12 +22,14 @@ public class TeacherDao extends AbstractDatabaseDao<Teacher> {
 
     @Override
     protected String idColumneName() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null; // To change body of implemented methods use File |
+                     // Settings | File Templates.
     }
 
     @Override
     protected String[] otherColumnNames() {
-        return new String[0];  //To change body of implemented methods use File | Settings | File Templates.
+        return new String[0]; // To change body of implemented methods use File
+                              // | Settings | File Templates.
     }
 
     @Override
@@ -47,7 +49,8 @@ public class TeacherDao extends AbstractDatabaseDao<Teacher> {
             String lastname = resultSet.getString("lastname");
             return new Teacher(firstname, lastname, null, null);
         } catch (SQLException e) {
-            throw new LessonPlanDataAccessException("Failed at binding teacher", e);
+            throw new LessonPlanDataAccessException(
+                    "Failed at binding teacher", e);
         }
     }
 }
