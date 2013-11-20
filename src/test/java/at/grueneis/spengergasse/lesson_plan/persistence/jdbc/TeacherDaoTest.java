@@ -52,7 +52,7 @@ public class TeacherDaoTest {
     @Test
     public void testFindById() {
         Teacher teacher = teacherDao.findById(1l);
-        // Assert.assertNotNull(teacher);
-        // Assert.assertEquals(Long.valueOf(1l), teacher.getId());
+        Assert.assertNotNull(teacher);
+        Assert.assertEquals(Long.valueOf(1l), teacher.getId());
     }
 }

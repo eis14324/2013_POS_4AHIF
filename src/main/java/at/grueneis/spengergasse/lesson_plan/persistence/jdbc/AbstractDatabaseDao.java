@@ -21,6 +21,8 @@ public abstract class AbstractDatabaseDao<T> implements DatabaseDao<T> {
 
     private PreparedStatement findAllStatement;
 
+    private PreparedStatement findByIdStatement;
+
     public AbstractDatabaseDao(Connection connection) {
         this.connection = connection;
     }
@@ -34,8 +36,7 @@ public abstract class AbstractDatabaseDao<T> implements DatabaseDao<T> {
                 throw new IllegalStateException("Connection must not be closed");
             }
         } catch (SQLException e) {
-            throw new LessonPlanDataAccessException(
-                    "Failed to validate connection", e);
+            throw new LessonPlanDataAccessException("Failed to validate connection", e);
         }
         return connection;
     }
@@ -48,14 +49,31 @@ public abstract class AbstractDatabaseDao<T> implements DatabaseDao<T> {
                 statementText.append(columnList());
                 statementText.append(" FROM ");
                 statementText.append(tableName());
-                findAllStatement = connection().prepareStatement(
-                        statementText.toString());
+                findAllStatement = connection().prepareStatement(statementText.toString());
             }
             return findAllStatement;
 
         } catch (SQLException e) {
-            throw new LessonPlanDataAccessException(
-                    "Failed to create statement", e);
+            throw new LessonPlanDataAccessException("Failed to create find all statement", e);
+        }
+    }
+
+    private PreparedStatement findByIdStatement() {
+        try {
+            if (findByIdStatement == null) {
+                StringBuffer statementText = new StringBuffer();
+                statementText.append("SELECT ");
+                statementText.append(columnList());
+                statementText.append(" FROM ");
+                statementText.append(tableName());
+                statementText.append(" WHERE ");
+                statementText.append(idColumneName()).append(" = ? ");
+                findByIdStatement = connection().prepareStatement(statementText.toString());
+            }
+            return findByIdStatement;
+
+        } catch (SQLException e) {
+            throw new LessonPlanDataAccessException("Failed to create find by id statement", e);
         }
     }
 
@@ -81,15 +99,27 @@ public abstract class AbstractDatabaseDao<T> implements DatabaseDao<T> {
             resultSet.close();
             return entities;
         } catch (SQLException e) {
-            throw new LessonPlanDataAccessException(
-                    "Failed to fetch all entities", e);
+            throw new LessonPlanDataAccessException("Failed to fetch all entities", e);
         }
     }
 
     @Override
-    public T findById(Long id) {
-        return null; // To change body of implemented methods use File |
-                     // Settings | File Templates.
+    public final T findById(Long id) {
+        try {
+            PreparedStatement findByIdStatment = findByIdStatement();
+            findByIdStatment.setLong(1, id);
+            ResultSet resultSet = findByIdStatment.executeQuery();
+            if (!resultSet.next()) {
+                throw new LessonPlanDataAccessException("Exact match didn't return data");
+            }
+            T entity = bind(resultSet);
+            if (resultSet.next()) {
+                throw new LessonPlanDataAccessException("Exact returned more then one row");
+            }
+            return entity;
+        } catch (SQLException e) {
+            throw new LessonPlanDataAccessException("Failed at findById query", e);
+        }
     }
 
     @Override
@@ -113,6 +143,6 @@ public abstract class AbstractDatabaseDao<T> implements DatabaseDao<T> {
     @Override
     public Long count() {
         return null; // To change body of implemented methods use File |
-                     // Settings | File Templates.
+        // Settings | File Templates.
     }
 }

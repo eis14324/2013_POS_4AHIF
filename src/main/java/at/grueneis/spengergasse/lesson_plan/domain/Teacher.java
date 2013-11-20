@@ -16,12 +16,18 @@ public class Teacher extends BasePersistable implements Serializable {
     private final Date birthdate;
     private final String email;
 
-    public Teacher(String firstName, String lastname, Date birthdate,
+    public Teacher(Long id, String firstName, String lastname, Date birthdate,
             String email) {
+        this.setId(id);
         this.firstName = firstName;
         this.lastname = lastname;
         this.birthdate = birthdate;
         this.email = email;
+    }
+
+    public Teacher(String firstName, String lastname, Date birthdate,
+            String email) {
+        this(null, firstName, lastname, birthdate, email);
     }
 
     public String getName() {
@@ -38,7 +44,8 @@ public class Teacher extends BasePersistable implements Serializable {
 
     @Override
     public String toString() {
-        return "Teacher [firstName=" + firstName + ", lastname=" + lastname
-                + ", birthdate=" + birthdate + ", email=" + email + "]";
+        return getClass().getSimpleName() + "[id=" + getId() + "firstName="
+                + firstName + ", lastname=" + lastname + ", birthdate="
+                + birthdate + ", email=" + email + "]";
     }
 }

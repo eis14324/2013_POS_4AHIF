@@ -22,8 +22,7 @@ public class TeacherDao extends AbstractDatabaseDao<Teacher> {
 
     @Override
     protected String idColumneName() {
-        return null; // To change body of implemented methods use File |
-                     // Settings | File Templates.
+        return "id";
     }
 
     @Override
@@ -45,9 +44,16 @@ public class TeacherDao extends AbstractDatabaseDao<Teacher> {
     @Override
     protected Teacher bind(ResultSet resultSet) {
         try {
+            Long id = resultSet.getLong("id");
             String firstname = resultSet.getString("firstname");
+            if (resultSet.wasNull()) {
+                /// firstname was null
+            }
             String lastname = resultSet.getString("lastname");
-            return new Teacher(firstname, lastname, null, null);
+            if (resultSet.wasNull()) {
+                /// lastname was null
+            }
+            return new Teacher(id, firstname, lastname, null, null);
         } catch (SQLException e) {
             throw new LessonPlanDataAccessException(
                     "Failed at binding teacher", e);
